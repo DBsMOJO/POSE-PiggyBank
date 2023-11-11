@@ -4,7 +4,7 @@
  *              Daniel Binder, 11.11.2023
  *--------------------------------------------------------------
  * Description:
- *
+ * Calculating a savings balance
  *--------------------------------------------------------------
 */
 
@@ -12,14 +12,15 @@ using System;
 
 namespace PiggyBank
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
             int ec20,
                 ec50,
-                e1,
-                e2;
+                euro,
+                euro2,
+                cent;
             double result;
 
             // Input
@@ -28,15 +29,19 @@ namespace PiggyBank
             Console.Write("Wie viele 50 Euro-Cent-Stücke? ");
             ec50 = Convert.ToInt32(Console.ReadLine());
             Console.Write("Wie viele 1 Euro-Stücke?       ");
-            e1 = Convert.ToInt32(Console.ReadLine());
+            euro = Convert.ToInt32(Console.ReadLine());
             Console.Write("Wie viele 2 Euro-Stücke?       ");
-            e2 = Convert.ToInt32(Console.ReadLine());
+            euro2 = Convert.ToInt32(Console.ReadLine());
 
             // Process
-            result = (e2 * 2) + e1 + (ec50 * (50 / (double)100)) + (ec20 * (20 / (double)100));
+            result = (euro2 * 2) + euro + (ec50 / (double)2) + (ec20 / (double)5);
+            cent = Convert.ToInt32(result * 100);
+            euro = cent / 100;
+            cent %= 100;
 
-            // Output
-            Console.WriteLine($"{result:0.00}");
+            // Out
+            Console.WriteLine($"Dein Sparschwein enthält {result:0.00} Euro!");
+            Console.WriteLine($"Dein Sparschwein enthält {euro} Euro und {cent} Euro-Cent!");
         }
     }
 }
